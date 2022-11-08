@@ -1,0 +1,16 @@
+
+.whole {
+    background-image: url("/assets/1.jpg");
+    background-size: cover;
+    background-position: center center;
+    height: 100%;
+  }
+
+
+  .card {
+     position:absolute;
+    top: 15%;
+    height: fit-content;
+    justify-content: center;
+    background-color: lightgoldenrodyellow;
+  }
