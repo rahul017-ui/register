@@ -8,28 +8,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  registerForm = new FormGroup({ 
+  loginForm = new FormGroup({ 
     email: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
-
+    password: new FormControl('', [Validators.required])
   });
 
   constructor(private userService:UserService,private router:Router) { }
 
   ngOnInit(): void {
   }
-
-  onSubmit() {
-    this.userService.login(this.registerForm.value).subscribe(res=>{
-      this.registerForm.reset();
-    // localStorage.setItem('res', JSON.stringify(res));
-      
+  async onSubmit() {
+    this.userService.login(this.loginForm.value).subscribe(res=>{
+      this.userService.setAuthToken(res.token);
+      this.loginForm.reset(),
       this.router.navigate(['/task'])
-    }
-   );
+    });
   }
-
-  get registerFormControl() {
-    return this.registerForm.controls;
+  get loginFormControl() {
+    return this.loginForm.controls;
   }
 }

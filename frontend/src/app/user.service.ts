@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -11,15 +11,19 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-
-  login(user:any){
-    return this.http.post<any>(`${this.ROOT_URL}/api/v1/users/login`,user);
+  login(user: any) {
+    return this.http.post<any>(`${this.ROOT_URL}/api/v1/users/login`, user);
   }
-
-
-  Register(user:any){
-       return this.http.post<any>(`${this.ROOT_URL}/api/v1/users/register`, user, )
+  Register(user: any) {
+    return this.http.post<any>(`${this.ROOT_URL}/api/v1/users/register`, user,)
 
   }
-
+  getAuthToken() {
+    return localStorage.getItem("token");
+  }
+  setAuthToken(token:string) {
+     localStorage.setItem('token', token)
+  }
 }
+
+

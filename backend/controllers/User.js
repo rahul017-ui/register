@@ -3,6 +3,8 @@ const _ = require('lodash');
 const bcrypt = require('bcrypt');
 const { User, validate } = require('../model/user');
 const Joi = require('joi');
+const jwt = require("jsonwebtoken");
+
 
 const getusers = async (req, res) => {
 
@@ -85,7 +87,6 @@ const createuser = async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   user.password = await bcrypt.hash(user.password, salt)
   await user.save();
-
   const token = user.generateAuthToken();
   res.header('x-auth-token', token).send(_.pick(user, ['_id', 'name', 'email']));
 
@@ -106,8 +107,13 @@ try{
 
   const validPassword = await bcrypt.compare(req.body.password, user.password)
   if (!validPassword) return res.status(400).send('invalid password');
-  const token = user.generateAuthToken();
-  res.json("user logined successfully");
+ 
+   const token = user.generateAuthToken();
+  // res
+  // .header("x-auth-token")
+  // .header("access-control-expose-headers", "x-auth-token")
+  // .json({message:"user logined successfully",token:token});
+  res.json({message:"user logined successfully" ,token:token});
 }catch (error) {
   res.json({ message: error });
 }

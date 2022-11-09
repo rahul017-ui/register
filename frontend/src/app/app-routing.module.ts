@@ -8,7 +8,7 @@ import { TaskComponent } from './task/task.component';
 const routes: Routes = [
   {path:"",component:RegisterComponent},
   {path:"login",component:LoginComponent},
-  {path:"task",component:TaskComponent}
+  {path:"task",component:TaskComponent,canActivate: [LoginGuard]}
 ];
 
 @NgModule({

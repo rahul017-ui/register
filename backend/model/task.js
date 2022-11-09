@@ -22,12 +22,11 @@ const taskSchema = new mongoose.Schema({
 
 const todotask = mongoose.model('todotask', taskSchema);
 
-
 function validatetask(task) {
   const schema = {
 
     user_id: Joi.string().required(),
-    pincode: Joi.number().min(5).required(),
+    pincode: Joi.min(5).required(),
     task: Joi.string().min(5).max(255).required(),
   };
 

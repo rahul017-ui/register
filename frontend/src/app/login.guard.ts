@@ -10,16 +10,13 @@ export class LoginGuard implements CanActivate, CanDeactivate<unknown> {
 
 
   canActivate(){
-    if(localStorage.getItem('res'))
+    if(localStorage.getItem('token'))
     {
-      const u = JSON.parse(localStorage.getItem('res')!);
-      if(u.success === true)
-      {
-        return true;
-      }
+         return true;
+      
     }
     console.log("res not found");
-    return this.router.parseUrl('/sign-in');
+    return this.router.parseUrl('/');
     
   }
   

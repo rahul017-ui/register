@@ -1,7 +1,5 @@
 const { todotask, validate } = require("../model/task");
 const _ = require('lodash');
-
-
 // Get All tasks
 const gettasks = async (req, res) => {
 
