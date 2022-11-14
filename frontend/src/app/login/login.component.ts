@@ -19,7 +19,8 @@ export class LoginComponent implements OnInit {
   }
   async onSubmit() {
     this.userService.login(this.loginForm.value).subscribe(res=>{
-      this.userService.setAuthToken(res.token);
+       this.userService.setAuthToken(res.token);
+      //console.log(res.token)
       this.loginForm.reset(),
       this.router.navigate(['/task'])
     });

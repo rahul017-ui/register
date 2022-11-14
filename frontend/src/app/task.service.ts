@@ -11,8 +11,9 @@ export class TaskService {
 
   constructor(private http:HttpClient) { }
 
-  createtask(id:any){
-    return this.http.post<any>(`${this.ROOT_URL}/api/v1/tasks/add/${id}`,id);
+  createtask(data:any){
+    console.log(data, "---id----")
+    return this.http.post<any>(`${this.ROOT_URL}/api/v1/tasks/add`, data);
   }
 
 

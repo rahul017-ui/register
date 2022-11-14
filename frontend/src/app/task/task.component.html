@@ -2,7 +2,7 @@
    <span class="gap">User</span>
    <span>Task</span>
    <span class="filler"></span>
-   <span><button>logout</button></span>
+   <span><button (click)="onlogout()">logout</button></span>
 </mat-toolbar>
 <div>
    <mat-card class="card">
@@ -17,7 +17,7 @@
                   *ngIf="taskFormControl.pincode.invalid && (taskFormControl.pincode.dirty || taskFormControl.pincode.touched)"
                   class="alert alert-danger">
                   <div *ngIf="taskFormControl.pincode.errors?.['required']">
-                     Pincode is required.
+                    Pincode is required.
                   </div>
                </div>
             </div>

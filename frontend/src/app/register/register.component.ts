@@ -15,9 +15,7 @@ export class RegisterComponent implements OnInit {
     contact: new FormControl('', [Validators.required]),
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
-
   });
-
   constructor(private userService:UserService,private router:Router) { }
 
   ngOnInit(): void {
@@ -27,7 +25,7 @@ export class RegisterComponent implements OnInit {
     //console.log(this.registerForm);
     this.userService.Register(this.registerForm.value).subscribe(res=>{
       this.registerForm.reset();
-      this.router.navigate(['/task'])
+      this.router.navigate(['/login'])
     }
    );
   }

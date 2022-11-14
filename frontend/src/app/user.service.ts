@@ -8,7 +8,6 @@ import { HttpClient, HttpEvent } from '@angular/common/http';
 export class UserService {
   ROOT_URL: string = environment.URL
 
-
   constructor(private http: HttpClient) { }
 
   login(user: any) {
@@ -19,11 +18,27 @@ export class UserService {
 
   }
   getAuthToken() {
-    return localStorage.getItem("token");
+     return localStorage.getItem('x-auth-token');
   }
+
+
+  // setItem(token:any) {
+  //   if (token) {
+  //     localStorage.setItem('x-auth-token',token);
+
+  //   }
+  //   return localStorage.setItem('x-auth-token',token);
+  // }
+
   setAuthToken(token:string) {
-     localStorage.setItem('token', token)
+
+     localStorage.setItem('x-auth-token',token)
   }
+
+  removeAuthToken(){
+    localStorage.removeItem('x-auth-token');
+  }
+
 }
 
 

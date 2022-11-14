@@ -1,5 +1,6 @@
 const { todotask, validate } = require("../model/task");
 const _ = require('lodash');
+const { raw } = require("body-parser");
 // Get All tasks
 const gettasks = async (req, res) => {
 
@@ -25,9 +26,13 @@ const gettask = async (req, res) => {
 const createtask = async (req, res) => {
   try {
     const { error } = validate(req.body);
+    // const {_id: id} = req.user;
+  
+    // console.log('userinfor', id)
     if (error) return res.status(400).send(error.details[0].message);
 
-    user = new todotask(_.pick(req.body, ['user_id', 'pincode', 'task']));
+    user = new todotask(_.pick(req.body, ['pincode', 'task']));
+  
 
     await user.save();
     res.json(user)
@@ -37,8 +42,6 @@ const createtask = async (req, res) => {
 
   }
 };
-
-
 
 // Update task
 const updatetask = async (req, res) => {
