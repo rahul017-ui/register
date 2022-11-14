@@ -3,10 +3,11 @@ const Joi = require('joi');
 
 
 const taskSchema = new mongoose.Schema({
-  // user_id: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: "User"
-  // },
+  user_id: {
+    type:String
+    // type: mongoose.Schema.Types.ObjectId,
+    // ref: "User"
+  },
   pincode: {
     type: Number,
     required: true
@@ -26,7 +27,7 @@ function validatetask(task) {
   const schema = {
 
     //user_id: Joi.string().required(),
-    pincode: Joi.min(5).required(),
+    pincode: Joi.required(),
     task: Joi.string().min(5).max(255).required(),
   };
 

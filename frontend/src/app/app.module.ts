@@ -14,12 +14,14 @@ import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule ,HTTP_INTERCEPTORS} from "@angular/common/http";
 import { TaskComponent } from './task/task.component';
+import { TaskDetailsComponent } from './task-details/task-details.component';
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    TaskComponent
+    TaskComponent,
+    TaskDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -5,6 +5,8 @@ const { User, validate } = require('../model/user');
 const Joi = require('joi');
 const jwt = require("jsonwebtoken");
 const dotenv = require('dotenv');
+const config = require('config');
+
 dotenv.config();
 
 const getusers = async (req, res) => {
@@ -108,14 +110,17 @@ try{
 
   const validPassword = await bcrypt.compare(req.body.password, user.password)
   if (!validPassword) return res.status(400).send('invalid password');
- 
-    const token = user.generateAuthToken();
+
+
+    const token = jwt.sign({_id:user._id, email: user.email},config.get('jwtPrivateKey'));
+    // const token =await  user.generateAuthToken();
     res.json({message:"user logined successfully" ,token:token});
-  //const token = user.generateAuthToken();
-   //res.header('x-auth-token',token).send(_.pick(user, ['_id', 'name', 'email']))
+  // const token = user.generateAuthToken();
+  //  res.header('x-auth-token',token).send(_.pick(user, ['_id', 'name', 'email']))
 
 }catch (error) {
-  res.json({ message: error });
+  console.log(error)
+  res.json({ message: "error" });
 }
 };
 

@@ -1,6 +1,5 @@
 const { todotask, validate } = require("../model/task");
 const _ = require('lodash');
-const { raw } = require("body-parser");
 // Get All tasks
 const gettasks = async (req, res) => {
 
@@ -26,22 +25,47 @@ const gettask = async (req, res) => {
 const createtask = async (req, res) => {
   try {
     const { error } = validate(req.body);
-    // const {_id: id} = req.user;
+    const {_id: user_id} = req.user;
   
-    // console.log('userinfor', id)
+   // console.log('userinfor', user_id)
     if (error) return res.status(400).send(error.details[0].message);
 
-    user = new todotask(_.pick(req.body, ['pincode', 'task']));
-  
-
+    const  user = new todotask(
+      {
+        user_id:user_id,
+        pincode:req.body.pincode,
+        task:req.body.task
+      }
+    );
+   // console.log("user",user)
     await user.save();
-    res.json(user)
+    res.json(user);
 
   } catch (error) {
-    res.json({ message: error })
+    console.log("error",error)
+    res.json({ message: "error" })
 
   }
 };
+// const createtask = async (req, res) => {
+//   try {
+//     const { error } = validate(req.body);
+//     const {_id: user_id} = req.user;
+  
+//     console.log('userinfor', user_id)
+//     if (error) return res.status(400).send(error.details[0].message);
+
+//     user = new todotask(_.pick(user_id,req.body, ['pincode', 'task']));
+// console.log("user",user)
+//     await user.save();
+//     res.json(user);
+
+//   } catch (error) {
+//     console.log("error",error)
+//     res.json({ message: "error" })
+
+//   }
+// };
 
 // Update task
 const updatetask = async (req, res) => {

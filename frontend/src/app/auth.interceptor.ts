@@ -15,7 +15,7 @@ export class AuthInterceptor implements HttpInterceptor{
              setHeaders: {'x-auth-token': `${token}`}
           });
        }
-       console.log(token);
+       //console.log(token);
        return next.handle(req)
       //  .pipe(
       //      catchError((err) => {
