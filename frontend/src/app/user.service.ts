@@ -17,6 +17,9 @@ export class UserService {
     return this.http.post<any>(`${this.ROOT_URL}/api/v1/users/register`, user,)
 
   }
+
+ 
+
   getAuthToken() {
      return localStorage.getItem('x-auth-token');
   }

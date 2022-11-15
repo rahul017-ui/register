@@ -15,9 +15,16 @@ export class TaskService {
     return this.http.post<any>(`${this.ROOT_URL}/api/v1/tasks/add`, data);
   }
 
-  gettask(id:any){
-    return this.http.get<any>(`${this.ROOT_URL}/api/v1/tasks//gettasklist/${id}`)
+  getalltask(){
+    return this.http.get<any>(`${this.ROOT_URL}/api/v1/users/getalltaskss`)  }
 
-  }
+
+    deletetask(){
+      return this.http.delete<any>(`${this.ROOT_URL}/api/v1/tasks/deletetask`)
+    }
+
+    updatetask(id:any){
+      return this.http.put<any>(`${this.ROOT_URL}/api/v1/tasks/updatetask/${id}`,id)
+    }
 
 }

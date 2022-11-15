@@ -5,10 +5,12 @@ const auth = require('../middleware/auth');
 
 router.post("/register", userController.createuser);
 router.post('/login', userController.login);
-router.get("/:id", auth, userController.getuser);
+// router.get("/:id", auth, userController.getuser);
 router.get("/status/:userId", userController.getstatus);
 router.get("/", userController.getusers);
-router.get("/gettasklist/:id",auth,userController.getusertask)
-router.put("/updateuser/:userId", userController.userupdate);
+router.get("/gettasklist/:id",userController.getusertask)
+router.put("/updateuser/:userId",auth, userController.userupdate);
 router.delete("/deleteUser/:userId", userController.deleteuser);
+router.get("/getalltaskss",auth,userController.getalltasks)
+
 module.exports = router;

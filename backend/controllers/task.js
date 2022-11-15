@@ -85,9 +85,21 @@ const updatetask = async (req, res) => {
   }
 };
 
+const deletetask = async (req, res) => {
+  try {
+    const {_id: user_id} = req.user;
+
+    const task = await todotask.findOneAndDelete({ user_id:user_id });
+    res.json(task);
+  } catch (error) {
+    res.json({ message: error });
+  }
+};
+
 module.exports = {
   updatetask,
   createtask,
   gettask,
-  gettasks
+  gettasks,
+  deletetask
 };

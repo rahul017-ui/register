@@ -1,0 +1,15 @@
+.table {
+    position: initial;
+    table-layout: fixed;
+    width: auto;
+    border-collapse: initial;
+    border: 1px solid;
+  }
+   th,
+  td {
+    padding: 10px;
+  
+  } 
+  .Whole{
+    background-color: bisque;
+   }

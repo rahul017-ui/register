@@ -55,20 +55,20 @@ const getstatus = async (req, res) => {
   }
 };
 
-const getuser = async (req, res) => {
+// const getuser = async (req, res) => {
 
-  const user = await User.findById(req.params.id).select('-password');
-  const task = await todotask.findOne({ user_id: req.params.id });
-  const userData = { "user": user, "task": task };
-  res.json(userData);
-};
+//   const user = await User.findById(req.params.id).select('-password');
+//   const task = await todotask.findOne({ user_id: req.params.id });
+//   const userData = { "user": user, "task": task };
+//   res.json(userData);
+// };
 
 
 const getusertask = async (req, res) => {
 
   try {
 
-    const task = await todotask.findOne({ user_id: req.params.id });
+    const task = await todotask.findone({ user_id: req.params.id });
     res.json(task);
 
   } catch (error) {
@@ -77,6 +77,22 @@ const getusertask = async (req, res) => {
 
 
 };
+
+
+const getalltasks =async(req,res)=>{
+  try {
+    const {_id: user_id} = req.user;
+   // console.log(user_id)
+
+    const alltask=await todotask.find({user_id:user_id});
+    res.json(alltask);
+  }catch(error){
+    res.json({message:"error"})
+  }
+}
+
+
+
 
 const createuser = async (req, res) => {
   try{
@@ -174,12 +190,13 @@ const deleteuser = async (req, res) => {
 };
 
 module.exports = {
-  getuser,
+ // getuser,
   createuser,
   login,
   userupdate,
   deleteuser,
   getusertask,
   getusers,
-  getstatus
+  getstatus,
+  getalltasks
 }

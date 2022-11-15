@@ -1,0 +1,17 @@
+.filler {
+    flex: 1 1 auto;
+  }
+  .gap {
+    margin-right: 10px;
+  }
+
+
+ .btn{
+  background-color: lightblue;
+  padding: auto;
+  display: inline-block;
+ padding: 5px;
+ border-radius: 5px;
+
+ }
+ 

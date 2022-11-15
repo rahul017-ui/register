@@ -1,0 +1,16 @@
+<div>
+    <h3>Tasks</h3>
+ <div *ngFor="let tasks of task">
+    <table class="table">
+       
+       <tr>
+          <th>ID</th>
+          <th>Pincode</th>
+          <th>Task</th>
+       </tr> 
+       <tr>
+          <td>{{tasks._id}}</td>
+          <td>{{tasks.pincode}}</td>
+          <td>{{tasks.task}}</td>
+       </tr>
+    </table></div></div> 
