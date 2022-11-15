@@ -76,9 +76,8 @@ const updatetask = async (req, res) => {
     };
 
     const updatedtask = await todotask.findByIdAndUpdate(
-      { _id: req.params.taskId },
-      task
-    );
+      req.params.taskId,
+      task);
     res.json(updatedtask);
   } catch (error) {
     res.json({ message: error });
@@ -87,9 +86,8 @@ const updatetask = async (req, res) => {
 
 const deletetask = async (req, res) => {
   try {
-    const {_id: user_id} = req.user;
 
-    const task = await todotask.findOneAndDelete({ user_id:user_id });
+    const task = await todotask.findOneAndDelete(req.params.taskId);
     res.json(task);
   } catch (error) {
     res.json({ message: error });

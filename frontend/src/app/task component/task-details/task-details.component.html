@@ -7,6 +7,9 @@
           <th>ID</th>
           <th>Pincode</th>
           <th>Task</th>
+          <button (click)="onDelete(tasks._id)">Delete task</button>
+          <button (click)="onUpdate()">on update</button>
+
        </tr> 
        <tr>
           <td>{{tasks._id}}</td>
@@ -14,3 +17,5 @@
           <td>{{tasks.task}}</td>
        </tr>
     </table></div></div> 
+
+   

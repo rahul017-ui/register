@@ -38,9 +38,9 @@
       </mat-toolbar>
    </div>
    <div>
-      <!-- <div class="card"> -->
+
       <h3>Add Task</h3>
-      <form [formGroup]="taskForm" (ngSubmit)="oncreatetask()">
+      <form [formGroup]="taskForm" >
          <div>
             <mat-form-field>
                <p> <input matInput type="number" placeholder="Pincode" formControlName="pincode"></p>
@@ -48,13 +48,32 @@
             <mat-form-field>
                <p> <input matInput type="text" placeholder="Task" formControlName="task"></p>
             </mat-form-field>
-            <button class="btn">Submit</button>
+            <button class="btn" *ngIf="!isUpdate" (click)="oncreatetask()">Submit</button>
+            <button *ngIf="isUpdate" (click)="Update(userId)">update</button>
+            
          </div>
       </form>
-
-
-
    </div>
+   <div>
+      <h3>Tasks</h3>
+   <div *ngFor="let tasks of task">
+      <table class="table">
+         <tr>
+            <th>ID</th>
+            <th>Pincode</th>
+            <th>Task</th>
+            <button (click)="onDelete(tasks._id)">Delete task</button>
+            <button (click)="onUpdate(tasks)">update</button>
+
+         </tr> 
+         <tr>
+            <td>{{tasks._id}}</td>
+            <td>{{tasks.pincode}}</td>
+            <td>{{tasks.task}}</td>
+         </tr>
+      </table></div></div> 
+  
+     
 </div>
 
 

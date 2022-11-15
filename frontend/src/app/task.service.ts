@@ -19,12 +19,12 @@ export class TaskService {
     return this.http.get<any>(`${this.ROOT_URL}/api/v1/users/getalltaskss`)  }
 
 
-    deletetask(){
-      return this.http.delete<any>(`${this.ROOT_URL}/api/v1/tasks/deletetask`)
+    deletetask(id:any){
+      return this.http.delete<any>(`${this.ROOT_URL}/api/v1/tasks/deletetask/${id}`)
     }
 
-    updatetask(id:any){
-      return this.http.put<any>(`${this.ROOT_URL}/api/v1/tasks/updatetask/${id}`,id)
+    updatetask(data:any,id:any){
+      return this.http.put<any>(`${this.ROOT_URL}/api/v1/tasks/updatetask/${id}`,data)
     }
 
 }

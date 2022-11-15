@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../../task.service';
 import { tasks } from '../../model/task';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-task-details',
   templateUrl: './task-details.component.html',
@@ -9,8 +10,7 @@ import { tasks } from '../../model/task';
 export class TaskDetailsComponent implements OnInit {
   task: tasks[] | undefined;
 
-
-  constructor(private taskService: TaskService) { }
+  constructor(private taskService: TaskService,private route:ActivatedRoute) { }
 
 
   ngOnInit(): void {
@@ -24,5 +24,20 @@ export class TaskDetailsComponent implements OnInit {
     }
     )
   }
+
+  onDelete(id:any){
+    this.taskService.deletetask(id).subscribe((res)=>{
+      console.log(res)
+    })
+  }
+  
+  onUpdate(){
+    
+  }
+  // onUpdate(id:any){
+  //   this.taskService.updatetask(id).subscribe((res)=>{
+
+  //   })
+  // }
 
 }
