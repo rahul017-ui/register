@@ -8,7 +8,7 @@ import { UserService } from '../../user.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
- 
+
   registerForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required]),
@@ -16,18 +16,19 @@ export class RegisterComponent implements OnInit {
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
   });
-  constructor(private userService:UserService,private router:Router) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   onSubmit() {
-    //console.log(this.registerForm);
-    this.userService.Register(this.registerForm.value).subscribe(res=>{
+    
+    this.userService.Register(this.registerForm.value).subscribe(res => {
+      this.userService.setAuthToken(res.token);
       this.registerForm.reset();
-      this.router.navigate(['/login'])
+      this.router.navigate(['/task'])
     }
-   );
+    );
   }
   get registerFormControl() {
     return this.registerForm.controls;

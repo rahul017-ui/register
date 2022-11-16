@@ -4,7 +4,6 @@ var mongoDB = 'mongodb://127.0.0.1/db';
 mongoose.connect(mongoDB);
 
 mongoose.Promise = global.Promise;
-
 var db = mongoose.connection;
 
 db.on('connected', function () {

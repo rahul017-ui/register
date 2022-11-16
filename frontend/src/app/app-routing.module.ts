@@ -7,9 +7,9 @@ import { TaskDashboardComponent } from './task component/task-dashboard/task-das
 import { TaskComponent } from './task component/task/task.component';
 
 const routes: Routes = [
-  {path:"",component:RegisterComponent},
-  {path:"login",component:LoginComponent},
-  {path:"task",component:TaskDashboardComponent,canActivate: [LoginGuard]},
+  { path: "", component: RegisterComponent },
+  { path: "login", component: LoginComponent },
+  { path: "task", component: TaskDashboardComponent, canActivate: [LoginGuard] },
 ];
 
 @NgModule({

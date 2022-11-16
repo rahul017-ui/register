@@ -1,29 +1,31 @@
 .filler {
-    flex: 1 1 auto;
-  }
-  .gap {
-    margin-right: 10px;
-  }
+  flex: 1 1 auto;
+}
+
+.gap {
+  margin-right: 10px;
+}
 
 
- .btn{
+.btn {
   background-color: lightblue;
   padding: auto;
   display: inline-block;
- padding: 5px;
- border-radius: 5px;
+  padding: 5px;
+  border-radius: 5px;
 
- }
- 
- .table {
+}
+
+.table {
   position: initial;
   table-layout: fixed;
   width: auto;
   border-collapse: initial;
   border: 1px solid;
 }
- th,
+
+th,
 td {
   padding: 10px;
 
-} 
+}

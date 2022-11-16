@@ -8,7 +8,7 @@
                     <mat-form-field>
                         <input matInput type="email" placeholder="email" formControlName="email">
                     </mat-form-field>
-                    <div *ngIf="loginFormControl.email.invalid && (loginFormControl.email.dirty || loginFormControl.email.touched)"
+                <div *ngIf="loginFormControl.email.invalid && (loginFormControl.email.dirty || loginFormControl.email.touched)"
                     class="alert alert-danger">
 
                     <div *ngIf="loginFormControl.email.errors?.['required']">
@@ -19,7 +19,7 @@
                     <mat-form-field>
                         <input matInput type="password" placeholder="password" formControlName="password">
                     </mat-form-field>
-                    <div *ngIf="loginFormControl.password.invalid && (loginFormControl.password.dirty || loginFormControl.password.touched)"
+                <div *ngIf="loginFormControl.password.invalid && (loginFormControl.password.dirty || loginFormControl.password.touched)"
                     class="alert alert-danger">
 
                     <div *ngIf="loginFormControl.password.errors?.['required']">

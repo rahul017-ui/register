@@ -1,47 +1,46 @@
-
 <div class="Whole">
    <div>
       <mat-toolbar color="primary">
          <span class="gap">User</span>
          <span>Task</span>
          <span class="filler"></span>
-         <span><button (click)="onLogout()">logout</button></span>
+         <span><button (click)="onLogout()">Logout</button></span>
       </mat-toolbar>
    </div>
    <div>
       <h3>Add Task</h3>
-      <form [formGroup]="taskForm" >
+      <form [formGroup]="taskForm">
          <div>
-            <mat-form-field>
+            <mat-form-field> 
                <p> <input matInput type="number" placeholder="Pincode" formControlName="pincode"></p>
             </mat-form-field>
             <mat-form-field>
                <p> <input matInput type="text" placeholder="Task" formControlName="task"></p>
             </mat-form-field>
             <button class="btn" *ngIf="!isUpdate" (click)="onCreateTask()">Submit</button>
-            <button *ngIf="isUpdate" (click)="Update(userId)">update</button>
-            
+            <button class="btn" *ngIf="isUpdate" (click)="onUpdate(userId)">Update</button>
          </div>
       </form>
    </div>
    <div>
       <h3>Tasks</h3>
-   <div *ngFor="let tasks of task">
-      <table class="table">
-         <tr>
-            <th>ID</th>
-            <th>Pincode</th>
-            <th>Task</th>
-            <button (click)="onDelete(tasks._id)">Delete task</button>
-            <button (click)="onUpdate(tasks)">update</button>
+      <div *ngFor="let task of tasks">
+         <table class="table">
+            <tr>
+               <th>ID</th>
+               <th>Pincode</th>
+               <th>Task</th>
+               <button (click)="onDelete(task._id)">Delete Task</button><br>
+               <button (click)="patchValue(task)">Update Task</button>
+            </tr>
+            <tr>
+               <td>{{task._id}}</td>
+               <td>{{task.pincode}}</td>
+               <td>{{task.task}}</td>
+            </tr>
+         </table>
+      </div>
+   </div>
 
-         </tr> 
-         <tr>
-            <td>{{tasks._id}}</td>
-            <td>{{tasks.pincode}}</td>
-            <td>{{tasks.task}}</td>
-         </tr>
-      </table></div></div> 
-  
-     
+
 </div>

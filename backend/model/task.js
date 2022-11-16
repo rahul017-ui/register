@@ -4,9 +4,7 @@ const Joi = require('joi');
 
 const taskSchema = new mongoose.Schema({
   user_id: {
-    type:String
-    // type: mongoose.Schema.Types.ObjectId,
-    // ref: "User"
+    type: String
   },
   pincode: {
     type: Number,
@@ -21,11 +19,10 @@ const taskSchema = new mongoose.Schema({
 });
 
 
-const todotask = mongoose.model('todotask', taskSchema);
+const todoTask = mongoose.model('todotask', taskSchema);
 
-function validatetask(task) {
+function validateTask(task) {
   const schema = {
-
     pincode: Joi.required(),
     task: Joi.string().min(5).max(255).required(),
   };
@@ -34,5 +31,5 @@ function validatetask(task) {
 }
 
 
-exports.todotask = todotask;
-exports.validate = validatetask;
+exports.task = todoTask;
+exports.validate = validateTask;

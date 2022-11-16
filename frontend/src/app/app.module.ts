@@ -14,7 +14,6 @@ import { LoginComponent } from './user component/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule ,HTTP_INTERCEPTORS} from "@angular/common/http";
 import { TaskComponent } from './task component/task/task.component';
-import {MatTableModule} from '@angular/material/table';
 import { TaskDashboardComponent } from './task component/task-dashboard/task-dashboard.component';
 
 @NgModule({

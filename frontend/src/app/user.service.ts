@@ -13,23 +13,22 @@ export class UserService {
   login(user: any) {
     return this.http.post<any>(`${this.ROOT_URL}/api/v1/users/login`, user);
   }
+  
   Register(user: any) {
     return this.http.post<any>(`${this.ROOT_URL}/api/v1/users/register`, user,)
 
   }
 
- 
-
   getAuthToken() {
-     return localStorage.getItem('x-auth-token');
+    return localStorage.getItem('x-auth-token');
   }
 
-  setAuthToken(token:string) {
+  setAuthToken(token: string) {
 
-     localStorage.setItem('x-auth-token',token)
+    localStorage.setItem('x-auth-token', token)
   }
 
-  removeAuthToken(){
+  removeAuthToken() {
     localStorage.removeItem('x-auth-token');
   }
 
