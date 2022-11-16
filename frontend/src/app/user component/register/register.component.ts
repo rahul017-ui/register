@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../user.service';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -16,19 +18,22 @@ export class RegisterComponent implements OnInit {
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
   });
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router,private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
 
   onSubmit() {
-    
+
     this.userService.Register(this.registerForm.value).subscribe(res => {
+      this.toastr.success('Register successfully', 'Success!');
       this.userService.setAuthToken(res.token);
       this.registerForm.reset();
       this.router.navigate(['/task'])
-    }
-    );
+    }, error=>{
+      console.log(error);
+     this.toastr.error(error.message, 'Error!');
+   });
   }
   get registerFormControl() {
     return this.registerForm.controls;

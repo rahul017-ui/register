@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule ,HTTP_INTERCEPTORS} from "@angular/common/http";
 import { TaskComponent } from './task component/task/task.component';
 import { TaskDashboardComponent } from './task component/task-dashboard/task-dashboard.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,9 @@ import { TaskDashboardComponent } from './task component/task-dashboard/task-das
     MatButtonModule,
     HttpClientModule,
     MatInputModule,
-    MatToolbarModule
+    MatToolbarModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
     
   ],
   providers: [{

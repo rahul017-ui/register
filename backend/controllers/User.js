@@ -36,7 +36,8 @@ const login = async (req, res) => {
     if (error) return res.status(400).send(error.details[0].message);
 
     let user = await User.findOne({ email: req.body.email });
-    if (!user) return res.status(400).send('invalid email');
+
+     if (!user) return res.status(400).send('invalid email');
 
     const validPassword = await bcrypt.compare(req.body.password, user.password)
     if (!validPassword) return res.status(400).send('invalid password');
@@ -45,8 +46,8 @@ const login = async (req, res) => {
     res.json({ message: "user logined successfully", token: token });
 
   } catch (error) {
-    console.log(error)
-    res.json({ message: "error" });
+    // console.log(error)
+    res.json({ message: error });
   }
 };
 

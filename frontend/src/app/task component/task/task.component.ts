@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from '../../task.service';
 import { UserService } from '../../user.service';
 import { task } from 'src/app/model/task';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
@@ -15,31 +17,31 @@ export class TaskComponent implements OnInit {
   userId: any
 
   taskForm = new FormGroup({
-    pincode: new FormControl('', Validators.required),
-    task: new FormControl('', Validators.required)
+    pincode: new FormControl(''),
+    task: new FormControl('')
   })
-  constructor(private taskService: TaskService, private router: Router, private userService: UserService) { }
+  constructor(private taskService: TaskService, private router: Router, private userService: UserService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getTask()
-
-
   }
   onCreateTask() {
     this.taskService.createTask(this.taskForm.value).subscribe(res => {
+      this.toastr.success('Task Created', 'Success!');
       this.taskForm.reset();
       this.getTask()
     })
   }
 
   onLogout() {
+    this.toastr.success('Logout successfully', 'Success!');
     this.userService.removeAuthToken();
     this.router.navigate(['/login']);
-
   }
   onDelete(id: any) {
+
     this.taskService.deleteTask(id).subscribe((res) => {
-      console.log(res)
+      this.toastr.success('Task Deleted', 'Success!');
       this.getTask()
     })
   }
@@ -51,7 +53,6 @@ export class TaskComponent implements OnInit {
     })
     this.userId = task._id
     this.isUpdate = true
-    // console.log(this.userId)
   }
   getTask() {
     this.taskService.getTasks().subscribe((res) => {
@@ -62,11 +63,12 @@ export class TaskComponent implements OnInit {
   onUpdate(id: any) {
     let data = this.taskForm.value
     this.taskService.updateTask(data, id).subscribe((res) => {
+      this.toastr.success('Updated successfully', 'Success!');
       this.taskForm.reset()
       console.log(res)
       this.getTask()
       this.isUpdate = false
     })
   }
-  
+
 }
