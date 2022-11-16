@@ -2,11 +2,11 @@ const router = require("express").Router();
 const taskController = require('../controllers/task');
 const auth = require("../middleware/auth");
 
-router.post("/add",auth, taskController.createtask);
-router.get("/gettasklist",auth, taskController.gettasks);
-router.get("/gettasklist/:taskId", taskController.gettask);
-router.put("/updatetask/:taskId", taskController.updatetask);
-router.delete("/deletetask/:taskId",taskController.deletetask)
+router.post("/add",auth, taskController.createTask);
+router.get("/gettasklist/:taskId", taskController.getTask);
+router.put("/updatetask/:taskId", taskController.updateTask);
+router.delete("/deletetask/:taskId",taskController.deleteTask)
+router.get("/getalltaskss",auth,taskController.getAllTasks)
 
 
 module.exports = router;

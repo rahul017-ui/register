@@ -1,18 +1,9 @@
 const { todotask, validate } = require("../model/task");
 const _ = require('lodash');
-// Get All tasks
-const gettasks = async (req, res) => {
 
-  try {
-    const task = await todotask.find();
-    res.json(task);
-  } catch (error) {
-    res.json({ message: error });
-  }
-};
 
 // Single task
-const gettask = async (req, res) => {
+const getTask = async (req, res) => {
   try {
     const user = await todotask.findById(req.params.taskId);
     res.json(user);
@@ -22,7 +13,7 @@ const gettask = async (req, res) => {
 };
 
 
-const createtask = async (req, res) => {
+const createTask = async (req, res) => {
   try {
     const { error } = validate(req.body);
     const {_id: user_id} = req.user;
@@ -47,29 +38,15 @@ const createtask = async (req, res) => {
 
   }
 };
-// const createtask = async (req, res) => {
-//   try {
-//     const { error } = validate(req.body);
-//     const {_id: user_id} = req.user;
-  
-//     console.log('userinfor', user_id)
-//     if (error) return res.status(400).send(error.details[0].message);
 
-//     user = new todotask(_.pick(user_id,req.body, ['pincode', 'task']));
-// console.log("user",user)
-//     await user.save();
-//     res.json(user);
-
-//   } catch (error) {
-//     console.log("error",error)
-//     res.json({ message: "error" })
-
-//   }
-// };
 
 // Update task
-const updatetask = async (req, res) => {
+const updateTask = async (req, res) => {
   try {
+    const {error}=validate(req.body);
+    if (error) return res.status(400).send(error.details[0].message);
+
+
     const task = {
       pincode: req.body.pincode,
       task: req.body.task,
@@ -84,7 +61,7 @@ const updatetask = async (req, res) => {
   }
 };
 
-const deletetask = async (req, res) => {
+const deleteTask = async (req, res) => {
   try {
 
     const task = await todotask.findOneAndDelete(req.params.taskId);
@@ -94,10 +71,28 @@ const deletetask = async (req, res) => {
   }
 };
 
+
+
+
+
+
+const getAllTasks =async(req,res)=>{
+  try {
+    const {_id: user_id} = req.user;
+   // console.log(user_id)
+
+    const alltask=await todotask.find({user_id:user_id});
+    res.json(alltask);
+  }catch(error){
+    res.json({message:"error"})
+  }
+}
+
+
 module.exports = {
-  updatetask,
-  createtask,
-  gettask,
-  gettasks,
-  deletetask
+  updateTask,
+  createTask,
+  getTask,
+  deleteTask,
+  getAllTasks
 };

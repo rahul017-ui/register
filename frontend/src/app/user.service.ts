@@ -24,15 +24,6 @@ export class UserService {
      return localStorage.getItem('x-auth-token');
   }
 
-
-  // setItem(token:any) {
-  //   if (token) {
-  //     localStorage.setItem('x-auth-token',token);
-
-  //   }
-  //   return localStorage.setItem('x-auth-token',token);
-  // }
-
   setAuthToken(token:string) {
 
      localStorage.setItem('x-auth-token',token)

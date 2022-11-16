@@ -13,9 +13,8 @@ import { RegisterComponent } from './user component/register/register.component'
 import { LoginComponent } from './user component/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule ,HTTP_INTERCEPTORS} from "@angular/common/http";
-import { TaskComponent } from './task component/Add task/task.component';
+import { TaskComponent } from './task component/task/task.component';
 import {MatTableModule} from '@angular/material/table';
-import { TaskDetailsComponent } from './task component/task-details/task-details.component';
 import { TaskDashboardComponent } from './task component/task-dashboard/task-dashboard.component';
 
 @NgModule({
@@ -24,7 +23,6 @@ import { TaskDashboardComponent } from './task component/task-dashboard/task-das
     RegisterComponent,
     LoginComponent,
     TaskComponent,
-    TaskDetailsComponent,
     TaskDashboardComponent
   ],
   imports: [

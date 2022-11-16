@@ -9,7 +9,7 @@ const config = require('config');
 
 dotenv.config();
 
-const getusers = async (req, res) => {
+const getUsers = async (req, res) => {
 
   try {
     let users = await User.find().lean();
@@ -44,7 +44,7 @@ const getusers = async (req, res) => {
 };
 
 
-const getstatus = async (req, res) => {
+const getStatus = async (req, res) => {
 
   try {
     let userstatus = await User.findById(req.params.userId);
@@ -64,37 +64,7 @@ const getstatus = async (req, res) => {
 // };
 
 
-const getusertask = async (req, res) => {
-
-  try {
-
-    const task = await todotask.findone({ user_id: req.params.id });
-    res.json(task);
-
-  } catch (error) {
-    res.json({ message: "error" });
-  }
-
-
-};
-
-
-const getalltasks =async(req,res)=>{
-  try {
-    const {_id: user_id} = req.user;
-   // console.log(user_id)
-
-    const alltask=await todotask.find({user_id:user_id});
-    res.json(alltask);
-  }catch(error){
-    res.json({message:"error"})
-  }
-}
-
-
-
-
-const createuser = async (req, res) => {
+const createUser = async (req, res) => {
   try{
     const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
@@ -129,10 +99,7 @@ try{
 
 
     const token = jwt.sign({_id:user._id, email: user.email},config.get('jwtPrivateKey'));
-    // const token =await  user.generateAuthToken();
     res.json({message:"user logined successfully" ,token:token});
-  // const token = user.generateAuthToken();
-  //  res.header('x-auth-token',token).send(_.pick(user, ['_id', 'name', 'email']))
 
 }catch (error) {
   console.log(error)
@@ -151,7 +118,7 @@ function validatelogin(req) {
 
 
 // Update user
-const userupdate = async (req, res) => {
+const userUpdate = async (req, res) => {
   try {
     const user = {
       name: req.body.name,
@@ -174,7 +141,7 @@ const userupdate = async (req, res) => {
 };
 
 // Delete user and Task
-const deleteuser = async (req, res) => {
+const deleteUser = async (req, res) => {
   try {
     const removeuser = await User.findByIdAndDelete(req.params.userId);
     const task = await todotask.findOneAndDelete({ user_id: req.params.userId });
@@ -191,12 +158,10 @@ const deleteuser = async (req, res) => {
 
 module.exports = {
  // getuser,
-  createuser,
+  createUser,
   login,
-  userupdate,
-  deleteuser,
-  getusertask,
-  getusers,
-  getstatus,
-  getalltasks
+  userUpdate,
+  deleteUser,
+  getUsers,
+  getStatus
 }

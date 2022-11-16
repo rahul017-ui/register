@@ -11,19 +11,19 @@ export class TaskService {
 
   constructor(private http:HttpClient) { }
 
-  createtask(data:any){
+  createTask(data:any){
     return this.http.post<any>(`${this.ROOT_URL}/api/v1/tasks/add`, data);
   }
 
-  getalltask(){
-    return this.http.get<any>(`${this.ROOT_URL}/api/v1/users/getalltaskss`)  }
+  getallTask(){
+    return this.http.get<any>(`${this.ROOT_URL}/api/v1/tasks/getalltaskss`)  }
 
 
-    deletetask(id:any){
+    deleteTask(id:any){
       return this.http.delete<any>(`${this.ROOT_URL}/api/v1/tasks/deletetask/${id}`)
     }
 
-    updatetask(data:any,id:any){
+    updateTask(data:any,id:any){
       return this.http.put<any>(`${this.ROOT_URL}/api/v1/tasks/updatetask/${id}`,data)
     }
 

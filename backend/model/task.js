@@ -26,7 +26,6 @@ const todotask = mongoose.model('todotask', taskSchema);
 function validatetask(task) {
   const schema = {
 
-    //user_id: Joi.string().required(),
     pincode: Joi.required(),
     task: Joi.string().min(5).max(255).required(),
   };
