@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from '../../task.service';
 import { UserService } from '../../user.service';
@@ -16,15 +16,43 @@ export class TaskComponent implements OnInit {
   isUpdate = false
   userId: any
 
-  taskForm = new FormGroup({
-    pincode: new FormControl(''),
-    task: new FormControl('')
-  })
-  constructor(private taskService: TaskService, private router: Router, private userService: UserService, private toastr: ToastrService) { }
+  taskForm!:FormGroup
+  // taskForm = new FormGroup({
+  //   pincode: new FormControl('',Validators.required),
+  //   task: new FormControl('')
+  // })
+  constructor(private formBuilder: FormBuilder,private taskService: TaskService, private router: Router, private userService: UserService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getTask()
+    this.taskForm=this.formBuilder.group({
+      pincode:[''],
+      task:['']
+    })  
   }
+
+
+  onChange(){
+
+    // this.taskForm.get('pincode')?.valueChanges.subscribe((res)=>{
+    //   this.taskForm.controls['pincode'].setValidators([Validators.required])
+
+    // }
+    // );
+    let pincodeSelected=this.taskForm.get('pincode')?.value;
+    let taskSelected=this.taskForm.get('task')?.value
+    if(pincodeSelected){
+      this.taskForm.controls['pincode'].setValidators([Validators.required])
+    }else{
+      this.taskForm.controls['pincode'].clearValidators()
+    }
+    if(taskSelected){
+      this.taskForm.controls['task'].setValidators([Validators.required])
+    }else{
+      this.taskForm.controls['task'].clearValidators
+    }
+  }
+
   onCreateTask() {
     this.taskService.createTask(this.taskForm.value).subscribe(res => {
       this.toastr.success('Task Created', 'Success!');
@@ -69,6 +97,10 @@ export class TaskComponent implements OnInit {
       this.getTask()
       this.isUpdate = false
     })
+  }
+
+  get taskFormControl() {
+    return this.taskForm.controls;
   }
 
 }

@@ -9,9 +9,16 @@
 
 .btn {
   background-color: lightblue;
-  padding: auto;
   display: inline-block;
   padding: 5px;
+  border-radius: 5px;
+
+}
+
+.btnn{
+  background-color: rgb(81, 255, 0);
+  padding: auto;
+  display: inline-block;
   border-radius: 5px;
 
 }
@@ -22,6 +29,9 @@
   width: auto;
   border-collapse: initial;
   border: 1px solid;
+}
+.id{
+  background-color: lightgreen;
 }
 
 th,

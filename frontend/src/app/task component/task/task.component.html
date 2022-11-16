@@ -5,11 +5,11 @@
          <span>Task</span>
          <span class="filler"></span>
          <span><button (click)="onLogout()">Logout</button></span>
-      </mat-toolbar>
+      </mat-toolbar> 
    </div>
    <div>
       <h3>Add Task</h3>
-      <form [formGroup]="taskForm">
+      <form [formGroup]="taskForm" >
          <div>
             <mat-form-field> 
                <p> <input matInput type="number" placeholder="Pincode" formControlName="pincode"></p>
@@ -17,8 +17,22 @@
             <mat-form-field>
                <p> <input matInput type="text" placeholder="Task" formControlName="task"></p>
             </mat-form-field>
-            <button class="btn" *ngIf="!isUpdate" (click)="onCreateTask()">Submit</button>
+            <button class="btn" *ngIf="!isUpdate" (change)="onChange()" (click)="onCreateTask()">Submit</button>
             <button class="btn" *ngIf="isUpdate" (click)="onUpdate(userId)">Update</button>
+            <!-- <div *ngIf="taskFormControl.pincode.invalid && (taskFormControl.pincode.dirty || taskFormControl.pincode.touched)"
+            class="alert alert-danger">
+
+            <div *ngIf="taskFormControl.pincode.errors?.['required']">
+                Pincode is required.
+            </div>
+        </div>
+            <div *ngIf="taskFormControl.task.invalid && (taskFormControl.task.dirty || taskFormControl.task.touched)"
+            class="alert alert-danger">
+
+            <div *ngIf="taskFormControl.task.errors?.['required']">
+                Task is required.
+            </div>
+        </div> -->
          </div>
       </form>
    </div>
@@ -30,8 +44,8 @@
                <th>ID</th>
                <th>Pincode</th>
                <th>Task</th>
-               <button (click)="onDelete(task._id)">Delete Task</button><br>
-               <button (click)="patchValue(task)">Update Task</button>
+               <button class="btnn"  (click)="onDelete(task._id)">Delete Task</button><br>
+               <button class="btnn" (click)="patchValue(task)">Update Task</button>
             </tr>
             <tr>
                <td>{{task._id}}</td>
@@ -41,6 +55,4 @@
          </table>
       </div>
    </div>
-
-
 </div>
