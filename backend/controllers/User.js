@@ -21,7 +21,7 @@ const createUser = async (req, res) => {
     await user.save();
 
     
-    const token = jwt.sign({ _id: user._id, email: user.email }, process.env.jwtPrivateKey);
+    const token = jwt.sign({ _id: user._id, email: user.email }, process.env.JWTPRIVATEKEY);
     res.json({ message: "user logined successfully", token: token });
 
   } catch (error) {
@@ -43,7 +43,7 @@ const login = async (req, res) => {
     const validPassword = await bcrypt.compare(req.body.password, user.password)
     if (!validPassword) return res.status(400).send('invalid password');
 
-    const token = jwt.sign({ _id: user._id, email: user.email }, process.env.jwtPrivateKey);
+    const token = jwt.sign({ _id: user._id, email: user.email }, process.env.JWTPRIVATEKEY);
     res.json({ message: "user logined successfully", token: token });
 
   } catch (error) {

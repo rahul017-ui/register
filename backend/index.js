@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require('cors')
 require('dotenv').config()
+const port=process.env.PORT
 
 
 const bodyParser = require('body-parser')
@@ -21,4 +22,4 @@ app.use(express.json());
 // route Middlewares
 app.use("/", commonRoutes);
 
-app.listen(process.env.PORT, () => console.log(`server up and runing on port ${process.env.PORT}` ));
+app.listen(port, () => console.log(`server up and runing on port ${port}` ));
