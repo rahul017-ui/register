@@ -3,3 +3,8 @@ export interface task {
     pincode: number;
     task: string;
 }
+
+export interface newtask{
+    pincode:number;
+    task:string
+}

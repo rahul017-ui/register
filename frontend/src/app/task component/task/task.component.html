@@ -17,8 +17,14 @@
             <mat-form-field>
                <p> <input matInput type="text" placeholder="Task" formControlName="task"></p>
             </mat-form-field>
-            <button class="btn" *ngIf="!isUpdate" (change)="onChange()" (click)="onCreateTask()">Submit</button>
+            <button class="btn" *ngIf="!isUpdate" (click)="onCreateTask()">Submit</button>
             <button class="btn" *ngIf="isUpdate" (click)="onUpdate(userId)">Update</button>
+            <div
+            class="error"
+            *ngIf="
+            taskForm.get('pincode')!.value == '' && taskForm.get('pincode')!.touched
+            "
+            >pincode Is Required</div>
             <!-- <div *ngIf="taskFormControl.pincode.invalid && (taskFormControl.pincode.dirty || taskFormControl.pincode.touched)"
             class="alert alert-danger">
 

@@ -26,34 +26,14 @@ export class TaskComponent implements OnInit {
   ngOnInit(): void {
     this.getTask()
     this.taskForm=this.formBuilder.group({
-      pincode:[''],
-      task:['']
+      pincode:['',Validators.required],
+      task:['',Validators.required]
     })  
   }
 
-
-  onChange(){
-
-    // this.taskForm.get('pincode')?.valueChanges.subscribe((res)=>{
-    //   this.taskForm.controls['pincode'].setValidators([Validators.required])
-
-    // }
-    // );
-    let pincodeSelected=this.taskForm.get('pincode')?.value;
-    let taskSelected=this.taskForm.get('task')?.value
-    if(pincodeSelected){
-      this.taskForm.controls['pincode'].setValidators([Validators.required])
-    }else{
-      this.taskForm.controls['pincode'].clearValidators()
-    }
-    if(taskSelected){
-      this.taskForm.controls['task'].setValidators([Validators.required])
-    }else{
-      this.taskForm.controls['task'].clearValidators
-    }
-  }
-
   onCreateTask() {
+    this.taskForm.controls['pincode'].clearValidators(); 
+    this.taskForm.controls['task'].clearValidators(); 
     this.taskService.createTask(this.taskForm.value).subscribe(res => {
       this.toastr.success('Task Created', 'Success!');
       this.taskForm.reset();
@@ -89,6 +69,8 @@ export class TaskComponent implements OnInit {
     )
   }
   onUpdate(id: any) {
+    this.taskForm.controls['pincode'].clearValidators(); 
+    this.taskForm.controls['task'].clearValidators(); 
     let data = this.taskForm.value
     this.taskService.updateTask(data, id).subscribe((res) => {
       this.toastr.success('Updated successfully', 'Success!');
